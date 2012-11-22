@@ -32,6 +32,16 @@ Quest = new Schema
   'resources':
     [type: Types.ObjectId, ref: 'Resource']
 
+Quest.statics.findByAuthor = (authorId, cb) ->
+  this.find author: authorId, (err, quests) ->
+    cb err if err?
+    cb quests
+
+Quest.statics.findByApiVersion = (version, cb) ->
+  this.find version: version, (err, quests) ->
+    cb err if err?
+    cb quests
+
 
 # Expose `Quest` to the parent mongoose client.
 
